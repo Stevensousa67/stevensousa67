@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { myJourney } from "@/lib/myJourney";
-import { motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 
 const MyJourney = () => {
   const container = {
@@ -11,7 +11,7 @@ const MyJourney = () => {
 
   const item = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut } },
   };
 
   return (
