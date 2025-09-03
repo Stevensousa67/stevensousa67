@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Drawer, DrawerTitle, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import { motion } from 'framer-motion';
+import { easeOut, motion } from 'framer-motion';
 
 interface Project {
     name: string;
@@ -58,7 +58,7 @@ export default function ProjectCard({ project, imageSize = { width: 420, height:
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: "easeOut" },
+            transition: { duration: 0.6, ease: easeOut },
         },
     };
 
