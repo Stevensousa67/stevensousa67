@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 import { aboutMe } from '@/lib/aboutMe';
-import { motion } from 'framer-motion';
+import { easeOut, motion } from 'framer-motion';
 
 export default function AboutMe() {
     const baseUrl = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}ss-pictures/`;
@@ -14,7 +14,7 @@ export default function AboutMe() {
 
     const item = {
         hidden: { opacity: 0, x: 50 },
-        visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: easeOut } },
     };
 
     return (
