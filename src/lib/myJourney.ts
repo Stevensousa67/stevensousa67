@@ -13,6 +13,15 @@ const baseURL  = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}svgs/myJourney/`;
 export const myJourney: Accomplishments[] = [
   {
     type: "work",
+    date: "September 2025 - Present",
+    title: "Software Engineer",
+    company: "Symmons Industries, Inc.",
+    description: "● Developing the Evolution web app, a comprehensive platform for visualizing real-time water usage and metrics data.",
+    icon: `${baseURL}work.svg`,
+    isBlack: true,
+  },
+  {
+    type: "work",
     date: "July 2025 - Present",
     title: "Full-Stack Software Engineer",
     company: "EndorphinaX",
