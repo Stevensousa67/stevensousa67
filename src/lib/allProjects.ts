@@ -39,7 +39,7 @@ export const projects: Project[] = [
     image: `${baseURL}Resume+Builder.jpg`,
     description:
       "Leverage Google Gemini AI to build resumes and cover letters tailored specifically to a selected job description.",
-    link: "https://resumebuilder.stevensousa.com",
+    link: "https://resume-builder-t6fw.onrender.com",
     techStack:
       "Stack: Django, Docker, Supabase, Bootstrap, Google Gemini API, AWS EC2 & ECR.",
     techDetails:
@@ -74,11 +74,11 @@ export const projects: Project[] = [
     image: `${baseURL}Football.jpg`,
     description:
       "Track major football league standings, game schedules, and news. Perfect for those football junkies needing a quick fix.",
-    link: "https://soccer.stevensousa.com",
+    link: "https://football.stevensousa.com",
     techStack:
-      "Stack: Node.js, Express, Supabase, ESPN API, Bootstrap, Javascript",
+      "Stack: Next.js, Shadcn, Tailwind CSS, ESPN API, Supabase, Vercel",
     techDetails:
-      "Football is a full-stack web application that leverages Node.js and Express to create RESTful endpoints that interact with the ESPN API to retrieve and process football data across seven major leagues around the world. Supabase stores supplementary data, ensuring fast querying and scalability. The frontend, built with Bootstrap and JavaScript, provides a dynamic and intuitive interface, enabling users to navigate seamlessly through league information and updates. Additionally, users can create accounts and save their favorite teams, enhancing the personalized experience.",
+      "Football is a full-stack web application that leverages Next.js and Shadcn to create a modern and responsive user interface. It interacts with the ESPN API to retrieve and process football data across seven major leagues around the world. Supabase stores supplementary data, ensuring fast querying and scalability. The frontend, built with Tailwind CSS, provides a dynamic and intuitive interface, enabling users to navigate seamlessly through league information and updates. Additionally, users can create accounts and save their favorite teams, enhancing the personalized experience.",
   },
   {
     name: "Meteorite Landings",
