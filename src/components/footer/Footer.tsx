@@ -17,7 +17,11 @@ export default function Footer() {
           <a href="https://open.spotify.com/user/223qjmi62hl4nilhilo6lsdea" target="_blank" rel="noopener noreferrer" className="cursor-pointer">
             <Image src={`${baseUrl}Spotify.svg`} alt="Spotify Logo" width={20} height={20} className="h-6 w-6" />
           </a>
-          <SpotifyStatus />
+
+          {/* Commenting out the Spotify Status due to error state being shown post Spotify Developer update.
+           I need premium in order to use the endpoint */}
+          {/* <SpotifyStatus /> */}
+          
         </div>
 
         {/* Right side: Social Media Links */}
