@@ -1,11 +1,10 @@
-import React from 'react';
 import Image from "next/image";
 import SpotifyStatus from './SpotifyStatus';
 import SocialMediaLinks from './SocialMediaLinks';
 import Copyright from './Copyright';
 
 export default function Footer() {
-  const baseUrl = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}svgs/socials/`;
+  const baseUrl = `/svgs/socials/`;
 
   return (
     <footer className="relative max-w-5xl mx-auto w-full mb-3 flex flex-col rounded-2xl px-8 saturate-100 backdrop-blur-[10px] overflow-hidden bg-gradient-to-t from-white/30 via-white/10 to-white/0 dark:from-black/30 dark:via-black/10 dark:to-black/0 shadow-xs">

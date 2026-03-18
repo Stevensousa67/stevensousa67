@@ -4,8 +4,8 @@ import { aboutMe } from '@/lib/aboutMe';
 import { easeOut, motion } from 'framer-motion';
 
 export default function AboutMe() {
-    const baseUrl = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}ss-pictures/`;
-    const imageSrc = `${baseUrl}Steven+Sousa.jpeg`;
+    const baseUrl = `/ss-pictures/`;
+    const imageSrc = `${baseUrl}Steven Sousa.jpeg`;
 
     const container = {
         hidden: { opacity: 0 },

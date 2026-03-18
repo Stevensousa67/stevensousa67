@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import NavbarLinks from './NavbarLinks';
 import classes from './navbar.module.css';
@@ -8,7 +8,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { ModeToggle } from '@/components/ui/modeToggle';
 
 export default function Navbar() {
-    const baseUrl = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}ss-pictures/`;
+    const baseUrl = `/ss-pictures/`;
     const imageSrc = `${baseUrl}Logo.jpeg`;
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -42,7 +42,7 @@ export default function Navbar() {
 
                     {/* Your Navbar content (Left side - Avatar with Skeleton, Right side - Links and Controls) */}
                     <Link href="/" className="inline-block">
-                        <div className="relative w-10 h-strictiveReact10">
+                        <div className="relative w-10 h-10">
                             {!isImageLoaded && <Skeleton className="w-10 h-10 rounded-full absolute inset-0 z-0" />}
                             <Avatar className="relative z-10 w-10 h-10">
                                 <AvatarImage src={imageSrc} onLoad={() => setIsImageLoaded(true)} className={`transition-opacity duration-500 ease-in-out ${!isImageLoaded ? 'opacity-0' : 'opacity-100'}`}/>

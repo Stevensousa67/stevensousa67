@@ -1,4 +1,3 @@
-import React from 'react';
 import WordRotator from './WordRotator';
 import { getCurrentUtcOffset } from '@/lib/getTimeZone';
 import PictureAndSkeleton from './Picture&Skeleton';

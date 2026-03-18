@@ -4,7 +4,7 @@ interface Skills {
     isBlack?: boolean;
 }
 
-const baseURL  = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}svgs/skills/`;
+const baseURL  = `/svgs/skills/`;
 
 export const skills: Skills[] = [
     {

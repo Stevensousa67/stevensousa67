@@ -8,13 +8,13 @@ interface Project {
   techDetails?: string;
 }
 
-const baseURL = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}project-thumbnails/`;
+const baseURL = `/project-thumbnails/`;
 
 export const projects: Project[] = [
   {
     name: "Holy Bible",
     status: "Under Development",
-    image: `${baseURL}Holy+Bible.jpg`,
+    image: `${baseURL}Holy Bible.jpg`,
     description:
       "Grow yourself spiritually and get closer to God by reading the Scriptures, studying customized study plans and devotionals.",
     techStack:
@@ -25,7 +25,7 @@ export const projects: Project[] = [
   {
     name: "Clash of Clans Management",
     status: "Under Development",
-    image: `${baseURL}Clash+of+Clans.jpg`,
+    image: `${baseURL}Clash of Clans.jpg`,
     description:
       "Quickly find information about your Clash of Clans clan or accounts, including war stats, clan members, and more.",
     techStack:
@@ -36,7 +36,7 @@ export const projects: Project[] = [
   {
     name: "Resume Builder",
     status: "Live",
-    image: `${baseURL}Resume+Builder.jpg`,
+    image: `${baseURL}Resume Builder.jpg`,
     description:
       "Leverage Google Gemini AI to build resumes and cover letters tailored specifically to a selected job description.",
     link: "https://resume-builder-t6fw.onrender.com",
@@ -83,7 +83,7 @@ export const projects: Project[] = [
   {
     name: "Meteorite Landings",
     status: "Live",
-    image: `${baseURL}Meteorite+Landings.jpg`,
+    image: `${baseURL}Meteorite Landings.jpg`,
     description:
       "Are you a metorite enthusiast? This app allows you to explore meteorite landing data, providing insights into their landings and characteristics - straight from NASA.",
     link: "https://github.com/Stevensousa67/COMP390/tree/main/Assignment%201.2",
@@ -94,7 +94,7 @@ export const projects: Project[] = [
   {
     name: "Enigma Machine",
     status: "Live",
-    image: `${baseURL}Enigma+Machine.jpg`,
+    image: `${baseURL}Enigma Machine.jpg`,
     description:
       "Experience the mystery of the Enigma Machine, a fascinating piece of history. This app allows you to encrypt and decrypt messages just like the original machine.",
     link: "https://github.com/Stevensousa67/CSC105/tree/main/Moodle_Assignments/Capstone%20Project",
@@ -105,7 +105,7 @@ export const projects: Project[] = [
   {
     name: "Snake Game",
     status: "Live",
-    image: `${baseURL}Snake+Game.jpg`,
+    image: `${baseURL}Snake Game.jpg`,
     description:
       "Relive the classic Snake game with a modern twist: Halloween themed. This app allows you to play the iconic game, testing your reflexes and strategy.",
     link: "https://github.com/Stevensousa67/CSC105/blob/main/Moodle_Assignments/Snake_Game.py",

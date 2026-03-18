@@ -8,13 +8,13 @@ interface Project {
   techDetails?: string;
 }
 
-const baseURL = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}project-thumbnails/`;
+const baseURL = `/project-thumbnails/`;
 
 export const projects: Project[] = [
   {
     name: "Holy Bible",
     status: "Under Development",
-    image: `${baseURL}Holy+Bible.jpg`,
+    image: `${baseURL}Holy Bible.jpg`,
     description:
       "Grow yourself spiritually and get closer to God by reading the Scriptures, studying customized study plans and devotionals.",
     techStack:
@@ -25,7 +25,7 @@ export const projects: Project[] = [
   {
     name: "Resume Builder",
     status: "Live",
-    image: `${baseURL}Resume+Builder.jpg`,
+    image: `${baseURL}Resume Builder.jpg`,
     description:
       "Leverage Google Gemini AI to build resumes and cover letters tailored specifically to a selected job description.",
     link: "https://resume-builder-t6fw.onrender.com",

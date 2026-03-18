@@ -1,11 +1,11 @@
 'use client';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 
 export default function PictureAndSkeleton() {
-    const baseUrl = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}ss-pictures/`;
-    const imageSrc = `${baseUrl}Steven+Sousa.jpeg`;
+    const baseUrl = `/ss-pictures/`;
+    const imageSrc = `${baseUrl}Steven Sousa.jpeg`;
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     return (

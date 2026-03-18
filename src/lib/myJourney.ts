@@ -8,7 +8,7 @@ interface Accomplishments {
   isBlack?: boolean;
 }
 
-const baseURL  = `${process.env.NEXT_PUBLIC_AWS_S3_BASE_URL}svgs/myJourney/`;
+const baseURL  = `/svgs/myJourney/`;
 
 export const myJourney: Accomplishments[] = [
   {
