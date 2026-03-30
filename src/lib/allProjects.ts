@@ -23,15 +23,16 @@ export const projects: Project[] = [
       "The Bible Web App aims to make scripture accessible, intuitive, and meaningful for users worldwide, with a focus on inclusivity and user engagement. As a personal learning project, it serves to master modern web and mobile development technologies. Key goals include: Accessibility: Ensure the app is usable by all, including those with visual, auditory, or motor impairments. User Engagement: Provide features like study plans and community interaction to deepen Bible study. Scalability: Deploy a production-ready app to Vercel with a cloud database (e.g., Supabase, Neon). Mobile Expansion: Build a React Native app to extend the experience to mobile users. Personal Mission: Create a tool that supports spiritual growth, inspired by a commitment to making the Bible approachable for all.",
   },
   {
-    name: "Clash of Clans Management",
-    status: "Under Development",
-    image: `${baseURL}Clash of Clans.jpg`,
+    name: "Silver Home Health Services",
+    status: "Live",
+    image: `${baseURL}SHHS.png`,
     description:
-      "Quickly find information about your Clash of Clans clan or accounts, including war stats, clan members, and more.",
+      "Freelance project: Built the complete online presence for Silver Home Health Services, a non-medical, private-pay home care business, including a responsive website with contact forms, service information, and client outreach features.",
+    link: "https://silverhhs.com",
     techStack:
-      "Stack: Next.js, TypeScript, Tailwind CSS, Clash of Clans API, Docker, AWS RDS, S3, EC2, ECR",
+      "Stack: Next.js, TypeScript, Tailwind CSS, Shadcn, Resend, Cloudflare Turnstile, Vercel",
     techDetails:
-      "The Clash of Clans Management Web App is designed to provide a comprehensive platform for Clash of Clans players to manage their clans and accounts efficiently. It leverages the Clash of Clans API to fetch real-time data about clans, members, and war stats. The application is built with Next.js and TypeScript, ensuring a robust and scalable architecture. Tailwind CSS is used for styling, providing a modern and responsive user interface. The backend is deployed on AWS EC2 using Docker, with data stored in AWS RDS and S3 for scalability and reliability. This app aims to enhance the gaming experience by providing players with easy access to essential information about their clans.",
+      "Designed and developed a full-stack Next.js application for Silver Home Health Services - a non-medical, private-pay home care business - focusing on performance, security, and conversion. Built a responsive UI with Shadcn and Tailwind CSS, implemented secure contact workflows using Resend and Cloudflare Turnstile, and deployed via Vercel. Achieved a 96 performance score and perfect 100s in accessibility, best practices, and SEO on Google PageSpeed Insights.",
   },
   {
     name: "Resume Builder",

@@ -23,16 +23,16 @@ export const projects: Project[] = [
       "The Bible Web App aims to make scripture accessible, intuitive, and meaningful for users worldwide, with a focus on inclusivity and user engagement. As a personal learning project, it serves to master modern web and mobile development technologies. Key goals include: Accessibility: Ensure the app is usable by all, including those with visual, auditory, or motor impairments. User Engagement: Provide features like study plans and community interaction to deepen Bible study. Scalability: Deploy a production-ready app to Vercel with a cloud database (e.g., Supabase, Neon). Mobile Expansion: Build a React Native app to extend the experience to mobile users. Personal Mission: Create a tool that supports spiritual growth, inspired by a commitment to making the Bible approachable for all.",
   },
   {
-    name: "Resume Builder",
+    name: "Silver Home Health Services",
     status: "Live",
-    image: `${baseURL}Resume Builder.jpg`,
+    image: `${baseURL}SHHS.png`,
     description:
-      "Leverage Google Gemini AI to build resumes and cover letters tailored specifically to a selected job description.",
-    link: "https://resume-builder-t6fw.onrender.com",
+      "Freelance project: Built the online presence for Silver Home Health Services, a non-medical, private-pay home care business.",
+    link: "https://silverhhs.com",
     techStack:
-      "Stack: Django, Docker, Supabase, Tailwind CSS, Google Gemini API, AWS EC2, AWS ECR.",
+      "Stack: Next.js, TypeScript, Tailwind CSS, Shadcn, Resend, Cloudflare Turnstile, Vercel",
     techDetails:
-      "Resume Builder is a full-stack web application that utilizes Django and Docker to create a robust backend service. It integrates with the Google Gemini API to generate tailored resumes and cover letters based on user-selected job descriptions and user profiles (For example: Full-Stack Developer me vs Database Engineer me). The application uses Supabase for database management, ensuring efficient data storage and retrieval. The frontend is styled with Tailwind CSS, providing a modern and responsive user interface. Deployed on AWS EC2 with Docker, the application ensures scalability and reliability, making it easy for users to create professional resumes effortlessly.",
+      "Silver Home Health Services is a full-stack web application that utilizes Next.js with Shadcn and Tailwind CSS to create a modern and responsive user interface. It integrates Resend for contact forms and Cloudflare Turnstile for security. The application is deployed on Vercel, ensuring fast and reliable performance.",
   },
   {
     name: "Football",
