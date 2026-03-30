@@ -11,28 +11,28 @@ interface Project {
 const baseURL = `/project-thumbnails/`;
 
 export const projects: Project[] = [
-  // {
-  //   name: "Holy Bible",
-  //   status: "Under Development",
-  //   image: `${baseURL}Holy Bible.jpg`,
-  //   description:
-  //     "Grow yourself spiritually and get closer to God by reading the Scriptures, studying customized study plans and devotionals.",
-  //   techStack:
-  //     "Stack: Next.js, TypeScript, Tailwind CSS, APIs, AWS RDS, S3, Vercel",
-  //   techDetails:
-  //     "The Bible Web App aims to make scripture accessible, intuitive, and meaningful for users worldwide, with a focus on inclusivity and user engagement. As a personal learning project, it serves to master modern web and mobile development technologies. Key goals include: Accessibility: Ensure the app is usable by all, including those with visual, auditory, or motor impairments. User Engagement: Provide features like study plans and community interaction to deepen Bible study. Scalability: Deploy a production-ready app to Vercel with a cloud database (e.g., Supabase, Neon). Mobile Expansion: Build a React Native app to extend the experience to mobile users. Personal Mission: Create a tool that supports spiritual growth, inspired by a commitment to making the Bible approachable for all.",
-  // },
   {
     name: "Silver Home Health Services",
     status: "Live",
     image: `${baseURL}SHHS.png`,
     description:
-      "Freelance project: Built the complete online presence for Silver Home Health Services, a non-medical, private-pay home care business, including a responsive website with contact forms, service information, and client outreach features.",
+    "Freelance project: Built the complete online presence for Silver Home Health Services, a non-medical, private-pay home care business, including a responsive website with contact forms, service information, and client outreach features.",
     link: "https://silverhhs.com",
     techStack:
-      "Stack: Next.js, TypeScript, Tailwind CSS, Shadcn, Resend, Cloudflare Turnstile, Vercel",
+    "Stack: Next.js, TypeScript, Tailwind CSS, Shadcn, Resend, Cloudflare Turnstile, Vercel",
     techDetails:
-      "Designed and developed a full-stack Next.js application for Silver Home Health Services - a non-medical, private-pay home care business - focusing on performance, security, and conversion. Built a responsive UI with Shadcn and Tailwind CSS, implemented secure contact workflows using Resend and Cloudflare Turnstile, and deployed via Vercel. Achieved a 96 performance score and perfect 100s in accessibility, best practices, and SEO on Google PageSpeed Insights.",
+    "Designed and developed a full-stack Next.js application for Silver Home Health Services - a non-medical, private-pay home care business - focusing on performance, security, and conversion. Built a responsive UI with Shadcn and Tailwind CSS, implemented secure contact workflows using Resend and Cloudflare Turnstile, and deployed via Vercel. Achieved a 96 performance score and perfect 100s in accessibility, best practices, and SEO on Google PageSpeed Insights.",
+  },
+  {
+    name: "Holy Bible",
+    status: "Under Development",
+    image: `${baseURL}Holy Bible.jpg`,
+    description:
+      "Grow yourself spiritually and get closer to God by reading the Scriptures, studying customized study plans and devotionals.",
+    techStack:
+      "Stack: Next.js, TypeScript, Tailwind CSS, APIs, AWS RDS, S3, Vercel",
+    techDetails:
+      "The Bible Web App aims to make scripture accessible, intuitive, and meaningful for users worldwide, with a focus on inclusivity and user engagement. As a personal learning project, it serves to master modern web and mobile development technologies. Key goals include: Accessibility: Ensure the app is usable by all, including those with visual, auditory, or motor impairments. User Engagement: Provide features like study plans and community interaction to deepen Bible study. Scalability: Deploy a production-ready app to Vercel with a cloud database (e.g., Supabase, Neon). Mobile Expansion: Build a React Native app to extend the experience to mobile users. Personal Mission: Create a tool that supports spiritual growth, inspired by a commitment to making the Bible approachable for all.",
   },
   {
     name: "Resume Builder",
