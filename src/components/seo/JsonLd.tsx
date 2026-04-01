@@ -1,4 +1,3 @@
-import Script from "next/script";
 import { skills } from "@/lib/skills";
 
 const siteUrl = "https://stevensousa.com";
@@ -23,7 +22,7 @@ export function JsonLd({
     "@type": "Person",
     name: "Steven Sousa",
     url: siteUrl,
-    image: `${siteUrl}/og-image.jpg`,
+    image: `${siteUrl}/opengraph-image`,
     jobTitle: "Freelance Web Developer",
     description:
       "Freelance web developer specializing in Next.js, TypeScript, React, and Tailwind CSS. Building impactful web applications for businesses.",
@@ -35,10 +34,6 @@ export function JsonLd({
     worksFor: {
       "@type": "Organization",
       name: "Freelance",
-    },
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "University",
     },
   };
 
@@ -52,11 +47,6 @@ export function JsonLd({
     author: {
       "@type": "Person",
       name: "Steven Sousa",
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteUrl}/?search={search_term_string}`,
-      "query-input": "required name=search_term_string",
     },
   };
 
@@ -89,11 +79,9 @@ export function JsonLd({
   return (
     <>
       {schemas.map((schema, index) => (
-        <Script
+        <script
           key={index}
-          id={`json-ld-${type}-${index}`}
           type="application/ld+json"
-          strategy="afterInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
@@ -134,10 +122,8 @@ export function ProjectJsonLd({
   };
 
   return (
-    <Script
-      id={`json-ld-project-${name.replace(/\s+/g, "-").toLowerCase()}`}
+    <script
       type="application/ld+json"
-      strategy="afterInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ProjectCard from "./ProjectCard"
 import { projects } from "@/lib/allProjects";
+import { ProjectJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -21,6 +22,16 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
     return (
         <>
+            {projects.map((project) => (
+                <ProjectJsonLd
+                    key={`schema-${project.name}`}
+                    name={project.name}
+                    description={project.description}
+                    url={project.liveLink}
+                    image={project.imageSrc}
+                    techStack={project.techStack}
+                />
+            ))}
             <h1 className="text-3xl font-semibold mt-10 mb-10 text-center animate-fade-slide-down">All Projects</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 mb-8 " >
                 {projects.map((project, index) => (

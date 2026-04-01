@@ -47,6 +47,11 @@ export const metadata: Metadata = {
   authors: [{ name: "Steven Sousa", url: siteUrl }],
   creator: "Steven Sousa",
   publisher: "Steven Sousa",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   robots: {
     index: true,
     follow: true,
@@ -66,27 +71,24 @@ export const metadata: Metadata = {
     title: "Steven Sousa | Freelance Web Developer & Full-Stack Engineer",
     description:
       "Freelance web developer specializing in Next.js, TypeScript, React, and Tailwind CSS. Building impactful web applications for businesses.",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Steven Sousa - Freelance Web Developer",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Steven Sousa | Freelance Web Developer & Full-Stack Engineer",
     description:
       "Freelance web developer specializing in Next.js, TypeScript, React, and Tailwind CSS. Building impactful web applications.",
-    images: ["/og-image.jpg"],
     creator: "@stevensousa",
   },
   alternates: {
     canonical: siteUrl,
+    types: {
+      "application/rss+xml": `${siteUrl}/feed.xml`,
+    },
   },
   category: "technology",
+  other: {
+    "google-site-verification": "YOUR_GOOGLE_VERIFICATION_CODE",
+  },
 };
 
 export const viewport: Viewport = {
