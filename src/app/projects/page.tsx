@@ -27,8 +27,8 @@ export default function ProjectsPage() {
                     key={`schema-${project.name}`}
                     name={project.name}
                     description={project.description}
-                    url={project.liveLink}
-                    image={project.imageSrc}
+                    url={project.link}
+                    image={project.image}
                     techStack={project.techStack}
                 />
             ))}
