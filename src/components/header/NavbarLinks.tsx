@@ -13,7 +13,7 @@ interface NavLinkItem {
 const navLinks: NavLinkItem[] = [
     { name: 'About', href: '/about' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Resume', href: '/Steven Sousa - Resume.pdf', target: '_blank', rel: 'noopener noreferrer' },
+    { name: 'Resume', href: '/Resume.pdf', target: '_blank', rel: 'noopener noreferrer' },
     { name: 'Contact', href: '/#contact-section', isContactLink: true },
 ];
 

@@ -42,10 +42,18 @@ export default function Navbar() {
 
                     {/* Your Navbar content (Left side - Avatar with Skeleton, Right side - Links and Controls) */}
                     <Link href="/" className="inline-block">
+                        <span className="sr-only">Home</span>
                         <div className="relative w-10 h-10">
-                            {!isImageLoaded && <Skeleton className="w-10 h-10 rounded-full absolute inset-0 z-0" />}
+                            {!isImageLoaded && (
+                                <Skeleton className="w-10 h-10 rounded-full absolute inset-0 z-0" />
+                            )}
                             <Avatar className="relative z-10 w-10 h-10">
-                                <AvatarImage src={imageSrc} onLoad={() => setIsImageLoaded(true)} className={`transition-opacity duration-500 ease-in-out ${!isImageLoaded ? 'opacity-0' : 'opacity-100'}`}/>
+                                <AvatarImage
+                                    src={imageSrc}
+                                    alt="Steven Sousa Logo"
+                                    onLoad={() => setIsImageLoaded(true)}
+                                    className={`transition-opacity duration-500 ease-in-out object-cover ${!isImageLoaded ? 'opacity-0' : 'opacity-100'}`}
+                                />
                             </Avatar>
                         </div>
                     </Link>
@@ -54,7 +62,7 @@ export default function Navbar() {
                         <NavbarLinks className="hidden md:flex gap-8 text-md" />
                         <div className="hidden md:block h-6 w-px bg-gray-400/50 flex-shrink-0" />
                         <ModeToggle />
-                        <button className="md:hidden text-foreground" onClick={() => (isOpen ? closeMenu() : setIsOpen(true))} aria-label={isOpen ? 'Close menu' : 'Open menu'} aria-expanded={isOpen}>
+                        <button className="md:hidden text-foreground" onClick={() => (isOpen ? closeMenu() : setIsOpen(true))} aria-label={isOpen ? 'Close menu' : 'Open menu'} aria-expanded={isOpen} >
                             {isOpen ? (
                                 <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Drawer, DrawerTitle, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { Drawer, DrawerTitle, DrawerClose, DrawerContent, DrawerTrigger, DrawerDescription } from "@/components/ui/drawer";
 
 interface Project {
     name: string;
@@ -51,13 +51,16 @@ export default function ProjectCard({ project, imageSize = { width: 420, height:
             </CardHeader>
             <CardContent className="flex justify-center items-center">
                 <Drawer>
-                    <DrawerTrigger asChild>
-                        <ProjectImage className="cursor-pointer" />
+                    <DrawerTrigger className="w-full border-0 bg-transparent p-0">
+                        <div className="w-full">
+                            <ProjectImage className="cursor-pointer" />
+                        </div>
                     </DrawerTrigger>
                     <DrawerContent className="max-h-[100vh] overflow-hidden">
                         <div className="p-4 max-w-5xl mx-auto flex flex-col min-h-0">
                             {/* Title Above Image on Mobile */}
                             <DrawerTitle className="text-xl font-semibold mb-4 md:hidden">{project.name}</DrawerTitle>
+                            <DrawerDescription className="sr-only">{project.description}</DrawerDescription>
                             <div className="min-h-0 overflow-y-auto">
                                 <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
                                     {/* Left Side - Image and Tech Stack */}
@@ -68,6 +71,7 @@ export default function ProjectCard({ project, imageSize = { width: 420, height:
                                     {/* Right Side - Title and Details */}
                                     <div className="w-full md:basis-2/3 md:order-2">
                                         <DrawerTitle className="text-xl font-semibold mb-4 hidden md:block">{project.name}</DrawerTitle>
+                                        <DrawerDescription className="sr-only">{project.description}</DrawerDescription>
                                         <p>{project.techDetails}</p>
                                     </div>
                                 </div>
