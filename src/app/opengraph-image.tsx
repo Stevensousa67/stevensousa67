@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Steven Sousa - Freelance Web Developer";
+export const alt = "Hire Steven Sousa - Freelance Web Developer for Hire";
 export const size = {
   width: 1200,
   height: 630,
@@ -42,7 +42,7 @@ export default async function Image() {
         >
           <span>{"const developer = {"}</span>
           <span style={{ marginLeft: 20 }}>{"name: 'Steven Sousa',"}</span>
-          <span style={{ marginLeft: 20 }}>{"role: 'Full-Stack Developer',"}</span>
+          <span style={{ marginLeft: 20 }}>{"role: 'Freelance Web Developer',"}</span>
           <span style={{ marginLeft: 20 }}>{"skills: ['Next.js', 'React', 'TypeScript']"}</span>
           <span>{"};"}</span>
         </div>
@@ -78,7 +78,31 @@ export default async function Image() {
               textTransform: "uppercase",
             }}
           >
-            Freelance Web Developer
+            Freelance Web Developer for Hire
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              marginTop: 8,
+              padding: "8px 20px",
+              borderRadius: 20,
+              backgroundColor: "rgba(34, 197, 94, 0.2)",
+              border: "1px solid rgba(34, 197, 94, 0.5)",
+            }}
+          >
+            <div
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: "50%",
+                backgroundColor: "#22c55e",
+              }}
+            />
+            <span style={{ color: "#22c55e", fontSize: 16, fontWeight: 500 }}>
+              Available for Projects
+            </span>
           </div>
           <div
             style={{

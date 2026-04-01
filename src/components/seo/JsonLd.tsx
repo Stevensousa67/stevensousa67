@@ -25,25 +25,64 @@ export function JsonLd({
     image: `${siteUrl}/opengraph-image`,
     jobTitle: "Freelance Web Developer",
     description:
-      "Freelance web developer specializing in Next.js, TypeScript, React, and Tailwind CSS. Building impactful web applications for businesses.",
+      "Freelance web developer for hire. I build custom websites and web applications for startups, small businesses, and entrepreneurs using modern technologies.",
     knowsAbout: skillNames,
     sameAs: [
       "https://github.com/Stevensousa67",
       "https://linkedin.com/in/stevensousa67",
     ],
-    worksFor: {
-      "@type": "Organization",
-      name: "Freelance",
+    hasOccupation: {
+      "@type": "Occupation",
+      name: "Freelance Web Developer",
+      occupationLocation: {
+        "@type": "Country",
+        name: "United States",
+      },
+      skills: skillNames.join(", "),
+    },
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Steven Sousa - Freelance Web Development",
+    url: siteUrl,
+    image: `${siteUrl}/opengraph-image`,
+    description:
+      "Freelance web development services including custom websites, web applications, e-commerce solutions, and landing pages. Specializing in Next.js, React, TypeScript, and modern web technologies.",
+    priceRange: "$$",
+    areaServed: {
+      "@type": "Country",
+      name: "United States",
+    },
+    serviceType: [
+      "Web Development",
+      "Custom Website Design",
+      "Web Application Development",
+      "Frontend Development",
+      "Full-Stack Development",
+      "E-commerce Development",
+      "Landing Page Development",
+    ],
+    provider: {
+      "@type": "Person",
+      name: "Steven Sousa",
+      url: siteUrl,
+    },
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      description: "Freelance web development services available for new projects",
     },
   };
 
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Steven Sousa",
+    name: "Steven Sousa - Freelance Web Developer for Hire",
     url: siteUrl,
     description:
-      "Portfolio website of Steven Sousa, a freelance web developer specializing in modern web technologies.",
+      "Hire a freelance web developer for your next project. Custom websites and web applications built with Next.js, React, and TypeScript.",
     author: {
       "@type": "Person",
       name: "Steven Sousa",
@@ -71,7 +110,7 @@ export function JsonLd({
 
   const schemas =
     type === "Person"
-      ? [personSchema, websiteSchema]
+      ? [personSchema, serviceSchema, websiteSchema]
       : type === "WebPage"
         ? [webPageSchema]
         : [websiteSchema];
