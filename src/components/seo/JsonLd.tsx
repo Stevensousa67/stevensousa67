@@ -30,6 +30,8 @@ export function JsonLd({
     sameAs: [
       "https://github.com/Stevensousa67",
       "https://linkedin.com/in/stevensousa67",
+      "https://twitter.com/stevensousa1776",
+      "https://instagram.com/stevensousa1776",
     ],
     address: {
       "@type": "PostalAddress",

@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     title: "Freelance Web Developer in Plymouth, MA | Steven Sousa",
     description:
       "Freelance web developer based in Plymouth, MA. Custom websites and web apps for startups and small businesses.",
-    creator: "@stevensousa",
+    creator: "@stevensousa1776",
   },
   alternates: {
     canonical: siteUrl,
