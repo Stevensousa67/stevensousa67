@@ -81,14 +81,8 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: siteUrl,
-    types: {
-      "application/rss+xml": `${siteUrl}/feed.xml`,
-    },
   },
   category: "technology",
-  other: {
-    "google-site-verification": "YOUR_GOOGLE_VERIFICATION_CODE",
-  },
 };
 
 export const viewport: Viewport = {
