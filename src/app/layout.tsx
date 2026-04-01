@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/header/Navbar";
 import AppBreadcrumb from "@/components/ui/AppBreadcrumb";
 import Footer from "@/components/footer/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,9 +20,85 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://stevensousa.com";
+
 export const metadata: Metadata = {
-  title: "Steven Sousa",
-  description: "Welcome to my personal website",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Steven Sousa | Freelance Web Developer & Full-Stack Engineer",
+    template: "%s | Steven Sousa",
+  },
+  description:
+    "Hire Steven Sousa, a freelance web developer based in Plymouth, MA serving Massachusetts and clients nationwide. Specializing in custom websites, web applications, and modern tech stacks including Next.js, React, and TypeScript. Available for freelance projects and contract work.",
+  keywords: [
+    "freelance web developer",
+    "web developer for hire",
+    "hire freelance developer",
+    "web developer Plymouth MA",
+    "web developer Massachusetts",
+    "web developer Boston area",
+    "freelance web developer Massachusetts",
+    "web developer South Shore MA",
+    "freelance React developer",
+    "freelance Next.js developer",
+    "custom website development",
+    "freelance full-stack developer",
+    "contract web developer",
+    "small business web developer",
+    "startup web developer",
+    "website developer near me",
+    "remote web developer",
+    "Steven Sousa developer",
+  ],
+  authors: [{ name: "Steven Sousa", url: siteUrl }],
+  creator: "Steven Sousa",
+  publisher: "Steven Sousa",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Steven Sousa - Freelance Web Developer",
+    title: "Freelance Web Developer in Plymouth, MA | Steven Sousa",
+    description:
+      "Freelance web developer based in Plymouth, Massachusetts. I build custom websites and web applications for startups and small businesses using Next.js, React, and TypeScript. Serving MA and remote clients nationwide.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Freelance Web Developer in Plymouth, MA | Steven Sousa",
+    description:
+      "Freelance web developer based in Plymouth, MA. Custom websites and web apps for startups and small businesses.",
+    creator: "@stevensousa1776",
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  category: "technology",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
@@ -37,6 +114,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Footer />
           <Toaster  />
         </ThemeProvider>
+        <JsonLd type="Person" />
         <SpeedInsights />
         <Analytics />
       </body>

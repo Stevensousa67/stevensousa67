@@ -9,7 +9,7 @@ export default function Projects() {
   return (
     <>
       <section className="mt-30 flex flex-col items-center text-center gap-8">
-        <h1 className="text-3xl font-semibold">Featured Projects</h1>
+        <h2 className="text-3xl font-semibold">Featured Projects</h2>
 
         {/* Grid layout when screen can fit all 3 cards - now with consistent margins */}
         <div className="hidden lg:flex flex-wrap gap-8 justify-center">

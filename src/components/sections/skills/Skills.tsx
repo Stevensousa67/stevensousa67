@@ -9,7 +9,7 @@ export default function Skills() {
   return (
     <>
       <section className="mt-30 flex flex-col items-center text-center gap-8">
-        <h1 className="text-3xl font-semibold">Skills</h1>
+        <h2 className="text-3xl font-semibold">Skills</h2>
         <div className="flex flex-wrap gap-8 justify-center">
           {skills.map((skill) => (
             <Badge key={skill.name} variant="outline" className="flex items-center gap-4 px-2 py-2 transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:border-blue-500">
