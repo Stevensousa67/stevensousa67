@@ -1,11 +1,27 @@
+import type { Metadata } from "next";
 import ProjectCard from "./ProjectCard"
 import { projects } from "@/lib/allProjects";
 
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Explore my portfolio of web development projects including full-stack applications built with Next.js, TypeScript, React, Django, and more. View live demos and technical details.",
+  openGraph: {
+    title: "Projects | Steven Sousa - Web Developer Portfolio",
+    description:
+      "Explore my portfolio of web development projects including full-stack applications built with Next.js, TypeScript, React, and more.",
+    url: "https://stevensousa.com/projects",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://stevensousa.com/projects",
+  },
+};
 
 export default function ProjectsPage() {
     return (
         <>
-            <p className="text-3xl font-semibold mt-10 mb-10 text-center animate-fade-slide-down">All Projects</p>
+            <h1 className="text-3xl font-semibold mt-10 mb-10 text-center animate-fade-slide-down">All Projects</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 mb-8 " >
                 {projects.map((project, index) => (
                     <ProjectCard

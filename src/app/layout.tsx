@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Navbar from "@/components/header/Navbar";
 import AppBreadcrumb from "@/components/ui/AppBreadcrumb";
 import Footer from "@/components/footer/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,9 +20,83 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://stevensousa.com";
+
 export const metadata: Metadata = {
-  title: "Steven Sousa",
-  description: "Welcome to my personal website",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Steven Sousa | Freelance Web Developer & Full-Stack Engineer",
+    template: "%s | Steven Sousa",
+  },
+  description:
+    "Steven Sousa is a freelance web developer specializing in Next.js, TypeScript, React, and Tailwind CSS. Building impactful web applications for businesses with modern technologies.",
+  keywords: [
+    "Steven Sousa",
+    "web developer",
+    "freelance developer",
+    "full-stack developer",
+    "Next.js developer",
+    "React developer",
+    "TypeScript",
+    "Tailwind CSS",
+    "frontend developer",
+    "backend developer",
+    "web applications",
+    "software engineer",
+  ],
+  authors: [{ name: "Steven Sousa", url: siteUrl }],
+  creator: "Steven Sousa",
+  publisher: "Steven Sousa",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteUrl,
+    siteName: "Steven Sousa",
+    title: "Steven Sousa | Freelance Web Developer & Full-Stack Engineer",
+    description:
+      "Freelance web developer specializing in Next.js, TypeScript, React, and Tailwind CSS. Building impactful web applications for businesses.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Steven Sousa - Freelance Web Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Steven Sousa | Freelance Web Developer & Full-Stack Engineer",
+    description:
+      "Freelance web developer specializing in Next.js, TypeScript, React, and Tailwind CSS. Building impactful web applications.",
+    images: ["/og-image.jpg"],
+    creator: "@stevensousa",
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  category: "technology",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
@@ -37,6 +112,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Footer />
           <Toaster  />
         </ThemeProvider>
+        <JsonLd type="Person" />
         <SpeedInsights />
         <Analytics />
       </body>
