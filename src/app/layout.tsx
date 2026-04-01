@@ -29,12 +29,16 @@ export const metadata: Metadata = {
     template: "%s | Steven Sousa",
   },
   description:
-    "Hire Steven Sousa, a freelance web developer for hire specializing in custom websites, web applications, and modern tech stacks including Next.js, React, and TypeScript. Available for freelance projects, contract work, and long-term partnerships.",
+    "Hire Steven Sousa, a freelance web developer based in Plymouth, MA serving Massachusetts and clients nationwide. Specializing in custom websites, web applications, and modern tech stacks including Next.js, React, and TypeScript. Available for freelance projects and contract work.",
   keywords: [
     "freelance web developer",
     "web developer for hire",
     "hire freelance developer",
-    "freelance website developer",
+    "web developer Plymouth MA",
+    "web developer Massachusetts",
+    "web developer Boston area",
+    "freelance web developer Massachusetts",
+    "web developer South Shore MA",
     "freelance React developer",
     "freelance Next.js developer",
     "custom website development",
@@ -44,8 +48,6 @@ export const metadata: Metadata = {
     "startup web developer",
     "website developer near me",
     "remote web developer",
-    "affordable web developer",
-    "professional web developer",
     "Steven Sousa developer",
   ],
   authors: [{ name: "Steven Sousa", url: siteUrl }],
@@ -72,15 +74,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Steven Sousa - Freelance Web Developer",
-    title: "Hire a Freelance Web Developer | Steven Sousa",
+    title: "Freelance Web Developer in Plymouth, MA | Steven Sousa",
     description:
-      "Looking for a freelance web developer? I build custom websites and web applications for startups and small businesses using Next.js, React, and TypeScript.",
+      "Freelance web developer based in Plymouth, Massachusetts. I build custom websites and web applications for startups and small businesses using Next.js, React, and TypeScript. Serving MA and remote clients nationwide.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hire a Freelance Web Developer | Steven Sousa",
+    title: "Freelance Web Developer in Plymouth, MA | Steven Sousa",
     description:
-      "Looking for a freelance web developer? I build custom websites and web applications for startups and small businesses.",
+      "Freelance web developer based in Plymouth, MA. Custom websites and web apps for startups and small businesses.",
     creator: "@stevensousa",
   },
   alternates: {

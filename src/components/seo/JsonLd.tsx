@@ -25,18 +25,28 @@ export function JsonLd({
     image: `${siteUrl}/opengraph-image`,
     jobTitle: "Freelance Web Developer",
     description:
-      "Freelance web developer for hire. I build custom websites and web applications for startups, small businesses, and entrepreneurs using modern technologies.",
+      "Freelance web developer based in Plymouth, MA. I build custom websites and web applications for startups, small businesses, and entrepreneurs throughout Massachusetts and nationwide.",
     knowsAbout: skillNames,
     sameAs: [
       "https://github.com/Stevensousa67",
       "https://linkedin.com/in/stevensousa67",
     ],
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Plymouth",
+      addressRegion: "MA",
+      addressCountry: "US",
+    },
     hasOccupation: {
       "@type": "Occupation",
       name: "Freelance Web Developer",
       occupationLocation: {
-        "@type": "Country",
-        name: "United States",
+        "@type": "State",
+        name: "Massachusetts",
+        containedInPlace: {
+          "@type": "Country",
+          name: "United States",
+        },
       },
       skills: skillNames.join(", "),
     },
@@ -49,12 +59,30 @@ export function JsonLd({
     url: siteUrl,
     image: `${siteUrl}/opengraph-image`,
     description:
-      "Freelance web development services including custom websites, web applications, e-commerce solutions, and landing pages. Specializing in Next.js, React, TypeScript, and modern web technologies.",
+      "Freelance web development services in Plymouth, MA and remote nationwide. Custom websites, web applications, e-commerce solutions, and landing pages built with Next.js, React, TypeScript, and modern web technologies.",
     priceRange: "$$",
-    areaServed: {
-      "@type": "Country",
-      name: "United States",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Plymouth",
+      addressRegion: "MA",
+      postalCode: "02360",
+      addressCountry: "US",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 41.9584,
+      longitude: -70.6673,
+    },
+    areaServed: [
+      {
+        "@type": "State",
+        name: "Massachusetts",
+      },
+      {
+        "@type": "Country",
+        name: "United States",
+      },
+    ],
     serviceType: [
       "Web Development",
       "Custom Website Design",
@@ -72,7 +100,7 @@ export function JsonLd({
     offers: {
       "@type": "Offer",
       availability: "https://schema.org/InStock",
-      description: "Freelance web development services available for new projects",
+      description: "Freelance web development services available for new projects. Serving Plymouth, South Shore, Boston area, and remote clients nationwide.",
     },
   };
 
