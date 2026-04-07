@@ -8,6 +8,7 @@ import Navbar from "@/components/header/Navbar";
 import AppBreadcrumb from "@/components/ui/AppBreadcrumb";
 import Footer from "@/components/footer/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { siteUrl } from "@/lib/siteConfig";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,8 +20,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-const siteUrl = "https://stevensousa.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

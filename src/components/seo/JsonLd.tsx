@@ -1,6 +1,6 @@
 import { skills } from "@/lib/skills";
-
-const siteUrl = "https://stevensousa.com";
+import { siteUrl } from "@/lib/siteConfig";
+import { faqs } from "@/lib/faq";
 
 interface PersonJsonLdProps {
   type?: "Person" | "WebSite" | "WebPage";
@@ -29,9 +29,10 @@ export function JsonLd({
     knowsAbout: skillNames,
     sameAs: [
       "https://github.com/Stevensousa67",
-      "https://linkedin.com/in/stevensousa67",
+      "https://www.linkedin.com/in/stevenssousa/",
       "https://twitter.com/stevensousa1776",
       "https://instagram.com/stevensousa1776",
+      "https://www.youtube.com/@shadelessghost",
     ],
     address: {
       "@type": "PostalAddress",
@@ -117,6 +118,14 @@ export function JsonLd({
       "@type": "Person",
       name: "Steven Sousa",
     },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteUrl}/projects?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 
   const webPageSchema = {
@@ -155,6 +164,52 @@ export function JsonLd({
         />
       ))}
     </>
+  );
+}
+
+export function FaqJsonLd() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer,
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function BreadcrumbJsonLd({
+  items,
+}: {
+  items: { name: string; url: string }[];
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
   );
 }
 

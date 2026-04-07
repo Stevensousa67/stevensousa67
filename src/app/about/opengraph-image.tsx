@@ -66,7 +66,7 @@ export default async function Image() {
               marginTop: 20,
             }}
           >
-            Full-Stack Developer specializing in modern web technologies
+            Freelance Web Developer specializing in Next.js, React & TypeScript
           </div>
         </div>
 

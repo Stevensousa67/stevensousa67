@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/siteConfig";
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = "https://stevensousa.com";
 
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/"],
+        disallow: ["/api/", "/*.pdf$"],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
