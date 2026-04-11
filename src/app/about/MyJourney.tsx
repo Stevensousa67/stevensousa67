@@ -1,42 +1,134 @@
 "use client";
+
 import Image from "next/image";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { myJourney } from "@/lib/myJourney";
-import { easeOut, motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import { Briefcase, GraduationCap } from "lucide-react";
 
-const MyJourney = () => {
-  const container = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
-  };
+type Journey = (typeof myJourney)[number];
 
-  const item = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: easeOut } },
-  };
+function parseDescription(description: string) {
+  return description
+    .split("\n")
+    .filter((line) => line.trim().length > 0)
+    .map((line, i) => {
+      if (line.startsWith("●")) {
+        return (
+          <div key={i} className="flex items-start gap-2">
+            <span className="mt-[0.35rem] size-1.5 rounded-full bg-primary shrink-0" />
+            <span className="text-sm text-muted-foreground leading-relaxed">
+              {line.slice(1).trim()}
+            </span>
+          </div>
+        );
+      }
+      return (
+        <p key={i} className="text-sm text-muted-foreground leading-relaxed">
+          {line}
+        </p>
+      );
+    });
+}
+
+function TimelineItem({ event }: { event: Journey }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isWork = event.type === "work";
 
   return (
-    <div className="px-4 mb-4">
-      <motion.h2 className="text-3xl font-semibold text-center my-10">My Journey</motion.h2>
-      <motion.div className="relative border-l-2 border-gray-200 dark:border-gray-700" variants={container} initial="hidden" animate="visible">
-        {myJourney.map((event, index) => (
-          <motion.div key={index} className="mb-10 ml-6" variants={item}>
-            <span className="absolute flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full -left-4 ring-b dark:ring-gray-900 dark:bg-blue-900">
-              <Image src={event.icon} alt={event.company} height={20} width={20} className={event.isBlack ? "dark:invert" : ""}></Image>
-            </span>
-            <h3 className="flex items-center mb-2 text-lg font-semibold text-foreground">
-              {event.title} at {event.company}
-            </h3>
-            <time className="block mb-2 text-sm leading-none text-foreground-muted">
-              {event.date}
-            </time>
-            <p className="text-foreground-muted whitespace-pre-line leading-relaxe">
-              {event.description}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
-  );
-};
+    <motion.div
+      ref={ref}
+      className="relative pl-10"
+      initial={{ opacity: 0, y: 32 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+    >
+      {/* Dot */}
+      <div
+        className={`absolute left-0 top-5 -translate-x-1/2 size-8 rounded-full flex items-center justify-center ring-4 ring-background z-10 ${
+          isWork
+            ? "bg-primary text-primary-foreground"
+            : "bg-card border-2 border-border text-foreground"
+        }`}
+      >
+        {isWork ? (
+          <Briefcase className="size-3.5" />
+        ) : (
+          <GraduationCap className="size-3.5" />
+        )}
+      </div>
 
-export default MyJourney;
+      {/* Card */}
+      <Card className="hover:ring-1 hover:ring-primary/20 transition-all duration-200">
+        <CardContent className="pt-1 pb-1">
+          {/* Header row */}
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <Badge
+              variant={isWork ? "default" : "secondary"}
+              className="text-[10px] uppercase tracking-wide"
+            >
+              {isWork ? "Work" : "Education"}
+            </Badge>
+            <time className="text-xs text-muted-foreground">{event.date}</time>
+          </div>
+
+          {/* Title + company */}
+          <div className="flex items-start gap-2.5 mb-4">
+            <Image
+              src={event.icon}
+              alt={event.company}
+              width={18}
+              height={18}
+              className={`mt-0.5 shrink-0 ${event.isBlack ? "dark:invert" : ""}`}
+            />
+            <div>
+              <h3 className="font-semibold text-base leading-snug">
+                {event.title}
+              </h3>
+              <p className="text-sm text-muted-foreground font-medium">
+                {event.company}
+              </p>
+            </div>
+          </div>
+
+          {/* Description */}
+          <div className="space-y-2">{parseDescription(event.description)}</div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
+
+export default function MyJourney() {
+  const headingRef = useRef(null);
+  const headingInView = useInView(headingRef, { once: true, margin: "-60px" });
+
+  return (
+    <section className="px-4 mt-16">
+      <motion.h2
+        ref={headingRef}
+        className="text-3xl md:text-4xl font-bold tracking-tight text-center mb-14"
+        initial={{ opacity: 0, y: 20 }}
+        animate={headingInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+      >
+        My Journey
+      </motion.h2>
+
+      {/* Timeline */}
+      <div className="relative ml-4">
+        {/* Vertical line */}
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-border" />
+
+        <div className="space-y-8">
+          {myJourney.map((event, index) => (
+            <TimelineItem key={index} event={event} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

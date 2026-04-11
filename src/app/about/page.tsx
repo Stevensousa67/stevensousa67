@@ -47,11 +47,21 @@ export default function AboutPage() {
           { name: "About", url: pageUrl },
         ]}
       />
-      <h1 className="text-3xl font-semibold mt-10 mb-10 text-center animate-fade-slide-down">
-        About Me
-      </h1>
-      <AboutMe />
-      <MyJourney />
+
+      <div className="pb-24">
+        {/* Page hero */}
+        <div className="px-4 pt-14 pb-10 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight animate-fade-slide-down">
+            About Me
+          </h1>
+          <p className="mt-3 text-muted-foreground text-base md:text-lg animate-fade-slide-down">
+            Freelance Web Developer &amp; Software Engineer
+          </p>
+        </div>
+
+        <AboutMe />
+        <MyJourney />
+      </div>
     </>
   );
 }

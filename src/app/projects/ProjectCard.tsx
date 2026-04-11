@@ -1,159 +1,183 @@
 "use client";
-import Image from 'next/image';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+import Image from "next/image";
+import { ExternalLink, Info } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Drawer, DrawerTitle, DrawerClose, DrawerContent, DrawerTrigger, DrawerDescription } from "@/components/ui/drawer";
-import { easeOut, motion } from 'framer-motion';
+import { Separator } from "@/components/ui/separator";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  SheetFooter,
+} from "@/components/ui/sheet";
+import type { Project } from "@/lib/allProjects";
 
-interface Project {
-    name: string;
-    status: string;
-    image: string;
-    description: string;
-    link?: string;
-    techStack?: string;
-    techDetails?: string;
-}
+const categoryLabel: Record<Project["category"], string> = {
+  professional: "Client Work",
+  web: "Web App",
+  python: "Python",
+};
 
-interface ProjectCardProps {
-    project: Project;
-    imageSize?: { width: number; height: number };
-    className?: string;
-    isReversed?: boolean;
-}
+const MAX_BADGES = 4;
 
-export default function ProjectCard({ project, imageSize = { width: 420, height: 420 }, className = "", isReversed = false }: ProjectCardProps) {
-    const isLive = project.status === "Live" && project.link;
+export default function ProjectCard({ project }: { project: Project }) {
+  const isLive = project.status === "Live" && !!project.link;
+  const isGitHub = project.link?.includes("github.com");
+  const viewLabel = isGitHub ? "View on GitHub" : "View Project";
 
-    const ProjectImage = ({ className: imageClassName = "" }: { className?: string }) => (
-        <AspectRatio ratio={9 / 6}>
-            <Image src={project.image} alt={project.name} width={imageSize.width} height={imageSize.height} className={`rounded-lg h-full w-full object-cover ${imageClassName}`} />
+  return (
+    <Card className="group/card flex flex-col h-full overflow-hidden hover:ring-primary/20 transition-all duration-300 hover:shadow-lg py-0 gap-0">
+      {/* ── Image ──────────────────────────────────────────────── */}
+      <div className="relative overflow-hidden">
+        <AspectRatio ratio={16 / 9}>
+          <Image
+            src={project.image}
+            alt={project.name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
+          />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
         </AspectRatio>
-    );
 
-    const ProjectButton = ({ children, className: buttonClassName = "" }: { children: React.ReactNode; className?: string }) => {
-        if (isLive) {
-            return (
-                <Button asChild className={buttonClassName}>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">{children}</a>
+        {/* Status badge */}
+        <div className="absolute top-3 right-3 z-10">
+          <span
+            className={
+              isLive
+                ? "inline-flex items-center gap-1.5 rounded-full border border-green-500/30 bg-background/85 backdrop-blur-sm px-2.5 py-1 text-xs font-semibold text-green-600 dark:text-green-400 shadow-sm"
+                : "inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-background/85 backdrop-blur-sm px-2.5 py-1 text-xs font-semibold text-amber-600 dark:text-amber-400 shadow-sm"
+            }
+          >
+            <span
+              className={`size-1.5 rounded-full ${isLive ? "bg-green-500" : "bg-amber-500"}`}
+            />
+            {project.status}
+          </span>
+        </div>
+      </div>
+
+      {/* ── Body ───────────────────────────────────────────────── */}
+      <div className="flex flex-col gap-3 flex-1 px-6 pt-5 pb-4">
+        {/* Category + name */}
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-1">
+            {categoryLabel[project.category]}
+          </p>
+          <h3 className="font-bold text-base leading-snug">{project.name}</h3>
+        </div>
+
+        {/* Description */}
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+          {project.description}
+        </p>
+
+        {/* Tech badges */}
+        <div className="flex flex-wrap gap-1.5">
+          {project.techStack.slice(0, MAX_BADGES).map((tech) => (
+            <Badge key={tech} variant="secondary" className="text-xs font-medium">
+              {tech}
+            </Badge>
+          ))}
+          {project.techStack.length > MAX_BADGES && (
+            <Badge variant="outline" className="text-xs font-medium">
+              +{project.techStack.length - MAX_BADGES} more
+            </Badge>
+          )}
+        </div>
+      </div>
+
+      {/* ── Footer ─────────────────────────────────────────────── */}
+      <div className="flex gap-2 px-6 pt-4 pb-6 border-t border-border/50">
+        {isLive ? (
+          <Button asChild size="sm" className="flex-1">
+            <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="size-3.5" />
+              {viewLabel}
+            </a>
+          </Button>
+        ) : (
+          <Button disabled size="sm" className="flex-1">
+            Coming Soon
+          </Button>
+        )}
+
+        {/* Details sheet */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="sm">
+              <Info className="size-3.5" />
+              Details
+            </Button>
+          </SheetTrigger>
+          <SheetContent className="sm:max-w-lg overflow-y-auto flex flex-col gap-0">
+            <SheetHeader className="pb-4 pr-10">
+              <SheetTitle className="text-lg font-bold">{project.name}</SheetTitle>
+              <SheetDescription>{project.description}</SheetDescription>
+            </SheetHeader>
+
+            <div className="px-6 pb-4 space-y-6 flex-1">
+              <AspectRatio ratio={16 / 9}>
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="rounded-2xl object-cover"
+                  sizes="(max-width: 640px) 100vw, 512px"
+                />
+              </AspectRatio>
+
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">
+                  Technologies
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {project.techStack.map((tech) => (
+                    <Badge key={tech} variant="secondary">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {project.techDetails && (
+                <>
+                  <Separator />
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">
+                      Technical Details
+                    </p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {project.techDetails}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <SheetFooter className="border-t border-border pt-4">
+              {isLive && (
+                <Button asChild>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="size-4" />
+                    {viewLabel}
+                  </a>
                 </Button>
-            );
-        }
-        return <Button disabled className={buttonClassName}>Coming Soon</Button>;
-    };
-
-    const cardVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2,
-            },
-        },
-    };
-
-    const childVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, ease: easeOut },
-        },
-    };
-
-    return (
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={cardVariants} className={`w-full ${className} flex justify-center`}>
-            <Card className="transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:border-blue-500 flex flex-col lg:flex-row">
-                {/* Mobile & Tablet Layout (Stacked Vertically) */}
-                <div className="flex flex-col items-center text-center lg:hidden">
-                    <CardHeader className="w-full mb-8">
-                        <CardTitle>{project.name}</CardTitle>
-                        <CardDescription>{project.status}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="w-full flex flex-col items-center">
-                        <Drawer>
-                            <DrawerTrigger className="w-full border-0 bg-transparent p-0">
-                                <div className="w-full"> {/* Added max-w-sm for image on mobile */}
-                                    <ProjectImage className="cursor-pointer" />
-                                </div>
-                            </DrawerTrigger>
-                            <DrawerContent className="max-h-[100vh] overflow-hidden">
-                                <div className="p-4 max-w-5xl mx-auto flex flex-col min-h-0">
-                                    <DrawerTitle className="text-xl font-semibold mb-4 md:hidden">{project.name}</DrawerTitle>
-                                    <DrawerDescription className="sr-only">{project.description}</DrawerDescription>
-                                    <div className="min-h-0 overflow-y-auto">
-                                        <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
-                                            <div className="w-full md:basis-1/3 md:max-w-md md:order-1">
-                                                <ProjectImage />
-                                                <p className="mt-4 text-muted-foreground">{project.techStack}</p>
-                                            </div>
-                                            <div className="w-full md:basis-2/3 md:order-2">
-                                                <DrawerTitle className="text-xl font-semibold mb-4 hidden md:block">{project.name}</DrawerTitle>
-                                                <DrawerDescription className="sr-only">{project.description}</DrawerDescription>
-                                                <p>{project.techDetails}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col sm:flex-row gap-2 justify-center md:justify-end mt-2 sticky bottom-0 p-4">
-                                        <ProjectButton>{isLive ? "Open Project" : "Coming Soon"}</ProjectButton>
-                                        <DrawerClose asChild>
-                                            <Button variant="outline">Close</Button>
-                                        </DrawerClose>
-                                    </div>
-                                </div>
-                            </DrawerContent>
-                        </Drawer>
-                        <CardDescription className="text-center mt-4">{project.description}</CardDescription>
-                    </CardContent>
-                    <CardFooter className="w-1/4 justify-center mt-4">
-                        <ProjectButton>Open Project</ProjectButton>
-                    </CardFooter>
-                </div>
-
-                {/* Desktop Layout (Side-by-Side) */}
-                <div className="hidden lg:flex lg:flex-row w-full">
-                    {isReversed ? (
-                        <>
-                            <motion.div className="w-2/3 flex flex-col min-w-0" variants={childVariants}>
-                                <CardContent className="flex justify-center items-center flex-grow">
-                                    <p>{project.techDetails}</p>
-                                </CardContent>
-                                <CardFooter className={isReversed ? "justify-start" : "justify-end"}>
-                                    <ProjectButton>{isLive ? "View Project" : "Coming Soon"}</ProjectButton>
-                                </CardFooter>
-                            </motion.div>
-                            <motion.div className="w-1/3 flex-shrink-0" variants={childVariants}>
-                                <CardHeader className="flex flex-col items-center">
-                                    <CardTitle>{project.name}</CardTitle>
-                                    <CardDescription>{project.status}</CardDescription>
-                                    <ProjectImage className="cursor-pointer" />
-                                    <p className="mt-4 text-muted-foreground text-center">{project.techStack}</p>
-                                </CardHeader>
-                            </motion.div>
-                        </>
-                    ) : (
-                        <>
-                            <motion.div className="w-1/3 flex-shrink-0" variants={childVariants}>
-                                <CardHeader className="flex flex-col items-center">
-                                    <CardTitle>{project.name}</CardTitle>
-                                    <CardDescription>{project.status}</CardDescription>
-                                    <ProjectImage className="cursor-pointer" />
-                                    <p className="mt-4 text-muted-foreground text-center">{project.techStack}</p>
-                                </CardHeader>
-                            </motion.div>
-                            <motion.div className="w-2/3 flex flex-col min-w-0" variants={childVariants}>
-                                <CardContent className="flex justify-center items-center flex-grow">
-                                    <p>{project.techDetails}</p>
-                                </CardContent>
-                                <CardFooter className={isReversed ? "justify-start" : "justify-end"}>
-                                    <ProjectButton>{isLive ? "View Project" : "Coming Soon"}</ProjectButton>
-                                </CardFooter>
-                            </motion.div>
-                        </>
-                    )}
-                </div>
-            </Card>
-        </motion.div>
-    );
+              )}
+              {!isLive && (
+                <Button disabled>Coming Soon</Button>
+              )}
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      </div>
+    </Card>
+  );
 }

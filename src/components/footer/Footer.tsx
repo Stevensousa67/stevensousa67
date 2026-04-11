@@ -1,35 +1,102 @@
 import Image from "next/image";
-import SpotifyStatus from './SpotifyStatus';
-import SocialMediaLinks from './SocialMediaLinks';
-import Copyright from './Copyright';
+import Link from "next/link";
+import { MapPin } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
+import { socialMedia } from "@/lib/socialMedia";
+import { getCurrentUtcOffset } from "@/lib/getTimeZone";
+
+const navLinks = [
+  { label: "Home",     href: "/"         },
+  { label: "About",    href: "/about"    },
+  { label: "Projects", href: "/projects" },
+];
+
+const socials = socialMedia.filter((s) => s.name !== "Personal Website");
 
 export default function Footer() {
-  const baseUrl = `/svgs/socials/`;
+  const year = new Date().getFullYear();
+  const timeOffset = getCurrentUtcOffset();
 
   return (
-    <footer className="relative max-w-5xl mx-auto w-full mb-3 flex flex-col rounded-2xl px-8 saturate-100 backdrop-blur-[10px] overflow-hidden bg-gradient-to-t from-white/30 via-white/10 to-white/0 dark:from-black/30 dark:via-black/10 dark:to-black/0 shadow-xs">
-      {/* Main content container */}
-      <div className="relative z-10 flex flex-col md:flex-row items-center md:justify-between w-full md:gap-0">
+    <footer className="relative max-w-5xl mx-auto w-full mb-3 rounded-2xl overflow-hidden bg-gradient-to-t from-white/30 via-white/10 to-white/0 dark:from-black/30 dark:via-black/10 dark:to-black/0 shadow-xs backdrop-blur-[10px]">
 
-        {/* Left side: Spotify Logo and Status */}
-        <div className="flex items-center gap-2">
-          <a href="https://open.spotify.com/user/223qjmi62hl4nilhilo6lsdea" target="_blank" rel="noopener noreferrer" className="cursor-pointer">
-            <Image src={`${baseUrl}Spotify.svg`} alt="Spotify Logo" width={20} height={20} className="h-6 w-6" />
-          </a>
+      {/* ── Main grid ──────────────────────────────────────────── */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-8 pt-6 pb-5">
 
-          {/* Commenting out the Spotify Status due to error state being shown post Spotify Developer update.
-           I need premium in order to use the endpoint */}
-          {/* <SpotifyStatus /> */}
-          
+        {/* Brand */}
+        <div className="space-y-2">
+          <p className="font-bold text-base tracking-tight">Steven Sousa</p>
+          <p className="text-sm text-muted-foreground leading-snug">
+            Freelance Web Developer
+          </p>
+          <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+            <MapPin className="size-3 shrink-0" />
+            Plymouth, MA · {timeOffset}
+          </div>
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-green-500/30 bg-green-500/10 px-2.5 py-1 text-xs font-semibold text-green-600 dark:text-green-400">
+            <span className="size-1.5 rounded-full bg-green-500 animate-pulse" />
+            Available for Freelance
+          </span>
         </div>
 
-        {/* Right side: Social Media Links */}
-        <SocialMediaLinks />
+        {/* Navigate */}
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            Navigate
+          </p>
+          <nav className="flex flex-col gap-1.5">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors w-fit"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Connect */}
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            Connect
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {socials.map((social) => (
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={social.name}
+                className="inline-flex size-9 items-center justify-center rounded-xl border border-border bg-card/50 hover:bg-muted transition-colors"
+              >
+                <Image
+                  src={social.icon}
+                  alt={social.name}
+                  width={16}
+                  height={16}
+                  className={social.isBlack ? "dark:invert" : ""}
+                />
+              </a>
+            ))}
+          </div>
+        </div>
 
       </div>
-      <div className="relative flex justify-center items-center">
-        <Copyright />
+
+      {/* ── Bottom bar ─────────────────────────────────────────── */}
+      <Separator />
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-2 px-8 py-3">
+        <p className="text-xs text-muted-foreground">
+          © {year} Steven Sousa. All rights reserved.
+        </p>
+        <p className="text-xs text-muted-foreground">
+          Built with Next.js · Deployed on Vercel
+        </p>
       </div>
+
     </footer>
   );
 }

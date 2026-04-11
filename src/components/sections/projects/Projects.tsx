@@ -1,43 +1,77 @@
-import React from 'react';
-import Link from 'next/link';
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView, type Variants } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { projects } from '@/lib/featuredProjects';
-import ProjectCard from './ProjectCard';
+import { featuredProjects } from "@/lib/featuredProjects";
+import ProjectCard from "./ProjectCard";
+
+const container: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
+const item: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
 
 export default function Projects() {
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
+  const gridInView = useInView(gridRef, { once: true, margin: "-60px" });
+
   return (
-    <>
-      <section className="mt-30 flex flex-col items-center text-center gap-8">
-        <h2 className="text-3xl font-semibold">Featured Projects</h2>
+    <section className="py-20 px-4">
+      {/* ── Header ───────────────────────────────────────────── */}
+      <motion.div
+        ref={headerRef}
+        className="flex items-end justify-between mb-10"
+        variants={container}
+        initial="hidden"
+        animate={headerInView ? "visible" : "hidden"}
+      >
+        <motion.div variants={item}>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-2">
+            Work
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            Featured Projects
+          </h2>
+        </motion.div>
 
-        {/* Grid layout when screen can fit all 3 cards - now with consistent margins */}
-        <div className="hidden lg:flex flex-wrap gap-8 justify-center">
-          {projects.map((project) => (
-            <ProjectCard key={project.name} project={project} className="w-80 border border-foreground/30" />
-          ))}
-        </div>
+        <motion.div variants={item}>
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="gap-1 text-muted-foreground hover:text-foreground"
+          >
+            <Link href="/projects">
+              View all
+              <ArrowRight className="size-3.5" />
+            </Link>
+          </Button>
+        </motion.div>
+      </motion.div>
 
-        {/* Carousel for smaller screens only */}
-        <div className="w-full max-w-4xl px-4 lg:hidden">
-          <Carousel opts={{ align: "start", loop: true }} className="w-full relative">
-            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 z-10 sm:-left-2 md:-left-4 lg:-left-6" />
-            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 z-10 sm:-right-2 md:-right-4 lg:-right-6" />
-            <CarouselContent className="-ml-2 md:-ml-4 pt-2">
-              {projects.map((project) => (
-                <CarouselItem key={project.name} className="pl-2 md:pl-4 basis-full md:basis-1/2">
-                  <ProjectCard project={project} imageSize={{ width: 420, height: 420 }} className="max-w-72 mx-auto" />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-        </div>
-
-        {/* Button to all projects page */}
-        <Button asChild className="mt-4 hover:underline">
-          <Link href="/projects">View all projects</Link>
-        </Button>
-      </section>
-    </>
+      {/* ── Cards grid ───────────────────────────────────────── */}
+      <motion.div
+        ref={gridRef}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+        variants={container}
+        initial="hidden"
+        animate={gridInView ? "visible" : "hidden"}
+      >
+        {featuredProjects.map((project) => (
+          <motion.div key={project.name} variants={item} className="h-full">
+            <ProjectCard project={project} />
+          </motion.div>
+        ))}
+      </motion.div>
+    </section>
   );
 }

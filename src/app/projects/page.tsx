@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import ProjectCard from "./ProjectCard";
 import { projects } from "@/lib/allProjects";
 import { ProjectJsonLd, JsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { siteUrl } from "@/lib/siteConfig";
+import ProjectsGrid from "./ProjectsGrid";
 
 const pageUrl = `${siteUrl}/projects`;
 
@@ -56,22 +56,23 @@ export default function ProjectsPage() {
           description={project.description}
           url={project.link}
           image={project.image}
-          techStack={project.techStack}
+          techStack={project.techStack.join(", ")}
         />
       ))}
-      <h1 className="text-3xl font-semibold mt-10 mb-10 text-center animate-fade-slide-down">
-        All Projects
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-8 mb-8">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={project.name}
-            project={project}
-            isReversed={index % 2 === 1}
-            className="border-foreground/30 max-w-72 md:max-w-none lg:max-w-none mx-auto"
-            imageSize={{ width: 420, height: 420 }}
-          />
-        ))}
+
+      <div className="pb-24">
+        {/* Page hero */}
+        <div className="px-4 pt-14 pb-10 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold tracking-tight animate-fade-slide-down">
+            My Projects
+          </h1>
+          <p className="mt-3 text-muted-foreground text-base md:text-lg max-w-lg mx-auto animate-fade-slide-down">
+            Client work, web applications, and personal projects — built with
+            modern tools and shipped to production.
+          </p>
+        </div>
+
+        <ProjectsGrid />
       </div>
     </>
   );
