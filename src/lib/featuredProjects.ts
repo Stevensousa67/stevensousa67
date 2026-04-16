@@ -2,8 +2,8 @@ import { projects } from "./allProjects";
 
 const featuredNames = [
   "Silver Home Health Services",
+  "Acme Landscaping",
   "Holy Bible",
-  "Football",
 ];
 
 export const featuredProjects = projects.filter((p) =>

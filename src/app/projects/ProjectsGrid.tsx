@@ -35,9 +35,7 @@ export default function ProjectsGrid() {
   const filteredRegular =
     activeFilter === "all"
       ? regularProjects
-      : activeFilter === "professional"
-        ? []
-        : regularProjects.filter((p) => p.category === activeFilter);
+      : regularProjects.filter((p) => p.category === activeFilter);
 
   const isEmpty = !showFeatured && filteredRegular.length === 0;
 

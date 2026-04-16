@@ -37,6 +37,25 @@ export const projects: Project[] = [
     highlights: ["96 Performance", "100 Accessibility", "100 SEO", "100 Best Practices"],
   },
   {
+    name: "Acme Landscaping",
+    status: "Live",
+    image: `${baseURL}Acme Landscaping.png`,
+    description:
+      "Spec work — designed and built a modern marketing website for a landscaping company, featuring service pages, a project gallery, and a contact form for lead generation.",
+    link: "https://acmeland.stevensousa.com",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn",
+      "Resend",
+      "Vercel",
+    ],
+    techDetails:
+      "Spec work built to demonstrate what a high-quality web presence could look like for a local landscaping business. Designed a conversion-focused marketing site with service detail pages, a project gallery, and a contact form powered by Resend. Deployed on Vercel with a focus on performance and SEO.",
+    category: "professional",
+  },
+  {
     name: "Holy Bible",
     status: "Under Development",
     image: `${baseURL}Holy Bible.jpg`,
