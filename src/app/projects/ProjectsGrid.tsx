@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { AnimatePresence, motion, useInView, type Variants } from "framer-motion";
 import { projects } from "@/lib/allProjects";
 import { cn } from "@/lib/utils";
 import ProjectCard from "./ProjectCard";
 import FeaturedProjectCard from "./FeaturedProjectCard";
+import AnimatedCard from "./AnimatedCard";
 
 const FILTERS = [
   { value: "all", label: "All" },
@@ -15,6 +16,19 @@ const FILTERS = [
 ] as const;
 
 type FilterValue = (typeof FILTERS)[number]["value"];
+
+const filterBarVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.07, delayChildren: 0.05 },
+  },
+};
+
+const filterChipVariants: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+};
 
 const featuredProjects = projects.filter((p) => p.featured);
 const regularProjects = projects.filter((p) => !p.featured);
@@ -28,6 +42,9 @@ const counts: Record<FilterValue, number> = {
 
 export default function ProjectsGrid() {
   const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
+
+  const filterRef = useRef(null);
+  const filterInView = useInView(filterRef, { once: true, margin: "-40px" });
 
   const filteredFeatured =
     activeFilter === "all" || activeFilter === "professional"
@@ -44,12 +61,19 @@ export default function ProjectsGrid() {
   return (
     <div className="px-4">
       {/* ── Filter bar ─────────────────────────────────────────── */}
-      <div className="flex flex-wrap gap-2 justify-center mb-10">
+      <motion.div
+        ref={filterRef}
+        className="flex flex-wrap gap-2 justify-center mb-10"
+        variants={filterBarVariants}
+        initial="hidden"
+        animate={filterInView ? "visible" : "hidden"}
+      >
         {FILTERS.map((filter) => {
           const isActive = activeFilter === filter.value;
           return (
-            <button
+            <motion.button
               key={filter.value}
+              variants={filterChipVariants}
               onClick={() => setActiveFilter(filter.value)}
               className={cn(
                 "inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -69,10 +93,10 @@ export default function ProjectsGrid() {
               >
                 {counts[filter.value]}
               </span>
-            </button>
+            </motion.button>
           );
         })}
-      </div>
+      </motion.div>
 
       {/* ── Grid ───────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -82,12 +106,12 @@ export default function ProjectsGrid() {
               key={project.name}
               className="col-span-full"
               layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
+              transition={{ duration: 0.3, ease: "easeIn" }}
             >
-              <FeaturedProjectCard project={project} />
+              <AnimatedCard>
+                <FeaturedProjectCard project={project} />
+              </AnimatedCard>
             </motion.div>
           ))}
 
@@ -95,17 +119,13 @@ export default function ProjectsGrid() {
             <motion.div
               key={project.name}
               layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96 }}
-              transition={{
-                duration: 0.3,
-                delay: index * 0.04,
-                ease: "easeOut",
-              }}
+              transition={{ duration: 0.25, ease: "easeIn" }}
               className="h-full"
             >
-              <ProjectCard project={project} />
+              <AnimatedCard index={index} className="h-full">
+                <ProjectCard project={project} />
+              </AnimatedCard>
             </motion.div>
           ))}
         </AnimatePresence>
