@@ -19,7 +19,6 @@ const formSchema = z.object({
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Define the form schema using Zod
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,7 +28,6 @@ export function ContactForm() {
     },
   });
 
-  // Handle form submission
   async function onSubmit(data: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
 
@@ -59,7 +57,7 @@ export function ContactForm() {
     } catch (error) {
       console.error('Form submission error:', error);
       toast('Network error. Please check your connection and try again.', {
-        position: 'top-right',
+        position: 'bottom-right',
         duration: 5000,
       });
     } finally {
@@ -128,7 +126,6 @@ export function ContactForm() {
             />
           </div>
 
-          {/* Submit Button */}
           <Button type="submit" className="w-1/4 hover:underline" disabled={isSubmitting} >
             {isSubmitting ? 'Sending...' : 'Send'}
           </Button>

@@ -6,11 +6,9 @@ import { motion, type Variants } from "framer-motion";
 import { ArrowRight, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { socialMedia } from "@/lib/socialMedia";
+import { publicSocials } from "@/lib/socialMedia";
 import { getCurrentUtcOffset } from "@/lib/getTimeZone";
 import WordRotator from "./WordRotator";
-
-const socials = socialMedia.filter((s) => s.name !== "Personal Website");
 
 const stats = [
   { value: "5+", label: "Years Coding" },
@@ -104,7 +102,7 @@ export default function About() {
 
           {/* Social icons */}
           <motion.div variants={item} className="flex flex-wrap gap-2">
-            {socials.map((social) => (
+            {publicSocials.map((social) => (
               <a
                 key={social.name}
                 href={social.url}

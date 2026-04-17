@@ -23,9 +23,24 @@ export default function SpotifyStatus() {
         setStatus({ isListening: false, message: 'Error fetching Spotify data' });
       }
     }
+
     fetchSpotifyStatus();
-    const interval = setInterval(fetchSpotifyStatus, 5000);
-    return () => clearInterval(interval);
+    let interval = setInterval(fetchSpotifyStatus, 5000);
+
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        clearInterval(interval);
+      } else {
+        fetchSpotifyStatus();
+        interval = setInterval(fetchSpotifyStatus, 5000);
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   const formatNowPlaying = () => {

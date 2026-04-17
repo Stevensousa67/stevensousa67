@@ -6,10 +6,8 @@ import Image from "next/image";
 import { MapPin, Clock } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { ContactForm } from "./ContactForm";
-import { socialMedia } from "@/lib/socialMedia";
+import { publicSocials } from "@/lib/socialMedia";
 import { getCurrentUtcOffset } from "@/lib/getTimeZone";
-
-const socials = socialMedia.filter((s) => s.name !== "Personal Website");
 
 export default function Contact() {
   const ref = useRef(null);
@@ -69,7 +67,7 @@ export default function Contact() {
                 Find me on
               </p>
               <div className="flex flex-wrap gap-2">
-                {socials.map((social) => (
+                {publicSocials.map((social) => (
                   <a
                     key={social.name}
                     href={social.url}

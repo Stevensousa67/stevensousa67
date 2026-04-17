@@ -39,3 +39,5 @@ export const socialMedia: socialMedia[] = [
         isBlack: true,
     }
 ];
+
+export const publicSocials = socialMedia.filter((s) => s.name !== "Personal Website");

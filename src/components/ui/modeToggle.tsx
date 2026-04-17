@@ -8,20 +8,27 @@ import { Button } from "@/components/ui/button"
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme()
+  const themeRef = React.useRef(theme)
+
+  React.useEffect(() => {
+    themeRef.current = theme
+  }, [theme])
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
+    setTheme(themeRef.current === "dark" ? "light" : "dark")
   }
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const tag = (e.target as HTMLElement).tagName
       if (tag === "INPUT" || tag === "TEXTAREA") return
-      if (e.key === "d" || e.key === "D") toggleTheme()
+      if (e.key === "d" || e.key === "D") {
+        setTheme(themeRef.current === "dark" ? "light" : "dark")
+      }
     }
     window.addEventListener("keydown", handleKeyDown)
     return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [theme])
+  }, [])
 
   return (
     <Button variant="outline" size="icon" onClick={toggleTheme}>

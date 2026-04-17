@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { socialMedia } from "@/lib/socialMedia";
+import { publicSocials } from "@/lib/socialMedia";
 import { getCurrentUtcOffset } from "@/lib/getTimeZone";
 
 const navLinks = [
@@ -10,8 +10,6 @@ const navLinks = [
   { label: "About",    href: "/about"    },
   { label: "Projects", href: "/projects" },
 ];
-
-const socials = socialMedia.filter((s) => s.name !== "Personal Website");
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -23,7 +21,6 @@ export default function Footer() {
       {/* ── Main grid ──────────────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-8 pt-6 pb-5">
 
-        {/* Brand */}
         <div className="space-y-2">
           <p className="font-bold text-base tracking-tight">Steven Sousa</p>
           <p className="text-sm text-muted-foreground leading-snug">
@@ -39,7 +36,6 @@ export default function Footer() {
           </span>
         </div>
 
-        {/* Navigate */}
         <div className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             Navigate
@@ -57,13 +53,12 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Connect */}
         <div className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             Connect
           </p>
           <div className="flex flex-wrap gap-2">
-            {socials.map((social) => (
+            {publicSocials.map((social) => (
               <a
                 key={social.name}
                 href={social.url}

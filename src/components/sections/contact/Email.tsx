@@ -54,9 +54,11 @@ ContactEmail.PreviewProps = {
 
 export default ContactEmail;
 
+const fontFamily = "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif";
+
 const main = {
   backgroundColor: '#ffffff',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
 };
 
 const container = {
@@ -68,7 +70,7 @@ const container = {
 
 const h1 = {
   color: '#333',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
   fontSize: '28px',
   fontWeight: 'bold',
   margin: '40px 0 30px 0',
@@ -78,7 +80,7 @@ const h1 = {
 
 const text = {
   color: '#333',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
   fontSize: '16px',
   lineHeight: '24px',
   margin: '24px 0',
@@ -94,7 +96,7 @@ const contactCard = {
 
 const contactHeader = {
   color: '#495057',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
   fontSize: '14px',
   fontWeight: 'bold',
   textTransform: 'uppercase' as const,
@@ -104,7 +106,7 @@ const contactHeader = {
 
 const contactDetail = {
   color: '#333',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
   fontSize: '15px',
   margin: '8px 0',
   lineHeight: '20px',
@@ -112,7 +114,7 @@ const contactDetail = {
 
 const messageHeader = {
   color: '#495057',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
   fontSize: '14px',
   fontWeight: 'bold',
   textTransform: 'uppercase' as const,
@@ -131,7 +133,7 @@ const messageBox = {
 
 const messageText = {
   color: '#333',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
   fontSize: '15px',
   lineHeight: '24px',
   margin: '0',
@@ -146,7 +148,7 @@ const hr = {
 
 const replyNote = {
   color: '#6c757d',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
   fontSize: '14px',
   backgroundColor: '#f8f9fa',
   padding: '16px',
@@ -157,7 +159,7 @@ const replyNote = {
 
 const footer = {
   color: '#6c757d',
-  fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  fontFamily,
   fontSize: '12px',
   lineHeight: '20px',
   textAlign: 'center' as const,
