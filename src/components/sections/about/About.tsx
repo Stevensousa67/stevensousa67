@@ -15,7 +15,7 @@ const socials = socialMedia.filter((s) => s.name !== "Personal Website");
 const stats = [
   { value: "5+", label: "Years Coding" },
   { value: "9",  label: "Projects Built" },
-  { value: "1",  label: "Degree Earned" },
+  { value: "2",  label: "Degrees Earned" },
 ];
 
 const container: Variants = {

@@ -67,6 +67,18 @@ export const projects: Project[] = [
     category: "web",
   },
   {
+    name: "Football",
+    status: "Live",
+    image: `${baseURL}Football.jpg`,
+    description:
+      "Track major football league standings, game schedules, and news across seven leagues worldwide. Perfect for football junkies needing a quick fix.",
+    link: "https://football.stevensousa.com",
+    techStack: ["Next.js", "Shadcn", "Tailwind CSS", "ESPN API", "Supabase", "Vercel"],
+    techDetails:
+      "Football is a full-stack Next.js application that interacts with the ESPN API to retrieve and process football data across seven major leagues. Supabase stores supplementary data for fast querying, and Tailwind CSS provides a dynamic, responsive interface. Users can create accounts and save favorite teams for a personalized experience.",
+    category: "web",
+  },
+  {
     name: "Resume Builder",
     status: "Live",
     image: `${baseURL}Resume Builder.jpg`,
@@ -84,30 +96,6 @@ export const projects: Project[] = [
     ],
     techDetails:
       "Resume Builder is a full-stack web application that integrates with the Google Gemini API to generate tailored resumes and cover letters based on user-selected job descriptions and role-specific profiles. Built with Django and containerized via Docker, deployed on AWS EC2 with ECR. Supabase handles database management, and Bootstrap provides a modern, responsive frontend.",
-    category: "web",
-  },
-  {
-    name: "YelpCamp!",
-    status: "Live",
-    image: `${baseURL}YelpCamp!.jpeg`,
-    description:
-      "Find, review, and create campgrounds. Perfect for camping enthusiasts looking to explore new sites and share their experiences.",
-    link: "https://yelpcamp.stevensousa.com",
-    techStack: ["Node.js", "Express", "MongoDB Atlas", "Cloudinary", "EJS", "Bootstrap"],
-    techDetails:
-      "YelpCamp! is a full-stack web application providing a RESTful API for campground management. MongoDB Atlas handles data storage, Cloudinary manages image uploads, and the frontend uses EJS and Bootstrap for a responsive interface. User authentication is managed with Passport.js, allowing users to create accounts, log in, and manage campground reviews and submissions.",
-    category: "web",
-  },
-  {
-    name: "Football",
-    status: "Live",
-    image: `${baseURL}Football.jpg`,
-    description:
-      "Track major football league standings, game schedules, and news across seven leagues worldwide. Perfect for football junkies needing a quick fix.",
-    link: "https://football.stevensousa.com",
-    techStack: ["Next.js", "Shadcn", "Tailwind CSS", "ESPN API", "Supabase", "Vercel"],
-    techDetails:
-      "Football is a full-stack Next.js application that interacts with the ESPN API to retrieve and process football data across seven major leagues. Supabase stores supplementary data for fast querying, and Tailwind CSS provides a dynamic, responsive interface. Users can create accounts and save favorite teams for a personalized experience.",
     category: "web",
   },
   {

@@ -1,6 +1,7 @@
 {
   "enabledPlugins": {
     "ui-ux-pro-max@ui-ux-pro-max-skill": true,
-    "claude-seo@agricidaniel-seo": true
+    "claude-seo@agricidaniel-seo": true,
+    "code-simplifier@claude-plugins-official": true
   }
 }

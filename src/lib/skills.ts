@@ -33,11 +33,6 @@ export const skills: Skills[] = [
         icon: `${baseURL}nodejs.svg`,
     },
     {
-        name: "Express",
-        icon: `${baseURL}express.svg`,
-        isBlack: true,
-    },
-    {
         name: "Django",
         icon: `${baseURL}django.svg`,
     },
@@ -52,10 +47,6 @@ export const skills: Skills[] = [
     {
         name: "MySQL",
         icon: `${baseURL}mysql.svg`,
-    },
-    {
-        name: "MongoDB",
-        icon: `${baseURL}mongodb.svg`,
     },
     {
         name: "AWS",
