@@ -181,14 +181,27 @@ export default function FeaturedProjectCard({ project }: { project: Project }) {
                   Live
                 </span>
               </div>
-              <Image
-                src={project.image}
-                alt={project.name}
-                fill
-                priority
-                className="object-cover object-top transition-transform duration-700 group-hover/featured:scale-105"
-                sizes="(max-width: 1024px) 100vw, 45vw"
-              />
+              {project.link ? (
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="block absolute inset-0">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    priority
+                    className="object-cover object-top transition-transform duration-700 group-hover/featured:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                  />
+                </a>
+              ) : (
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  priority
+                  className="object-cover object-top transition-transform duration-700 group-hover/featured:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 45vw"
+                />
+              )}
               {/* Bottom fade on mobile */}
               <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-card to-transparent lg:hidden" />
             </div>

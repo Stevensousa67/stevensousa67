@@ -16,7 +16,7 @@ const FILTERS = [
 
 type FilterValue = (typeof FILTERS)[number]["value"];
 
-const featuredProject = projects.find((p) => p.featured)!;
+const featuredProjects = projects.filter((p) => p.featured);
 const regularProjects = projects.filter((p) => !p.featured);
 
 const counts: Record<FilterValue, number> = {
@@ -29,15 +29,17 @@ const counts: Record<FilterValue, number> = {
 export default function ProjectsGrid() {
   const [activeFilter, setActiveFilter] = useState<FilterValue>("all");
 
-  const showFeatured =
-    activeFilter === "all" || activeFilter === "professional";
+  const filteredFeatured =
+    activeFilter === "all" || activeFilter === "professional"
+      ? featuredProjects
+      : featuredProjects.filter((p) => p.category === activeFilter);
 
   const filteredRegular =
     activeFilter === "all"
       ? regularProjects
       : regularProjects.filter((p) => p.category === activeFilter);
 
-  const isEmpty = !showFeatured && filteredRegular.length === 0;
+  const isEmpty = filteredFeatured.length === 0 && filteredRegular.length === 0;
 
   return (
     <div className="px-4">
@@ -75,9 +77,9 @@ export default function ProjectsGrid() {
       {/* ── Grid ───────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <AnimatePresence mode="popLayout" initial={false}>
-          {showFeatured && (
+          {filteredFeatured.map((project) => (
             <motion.div
-              key="featured"
+              key={project.name}
               className="col-span-full"
               layout
               initial={{ opacity: 0, y: 20 }}
@@ -85,9 +87,9 @@ export default function ProjectsGrid() {
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
             >
-              <FeaturedProjectCard project={featuredProject} />
+              <FeaturedProjectCard project={project} />
             </motion.div>
-          )}
+          ))}
 
           {filteredRegular.map((project, index) => (
             <motion.div

@@ -12,7 +12,7 @@ import WordRotator from "./WordRotator";
 
 const stats = [
   { value: "5+", label: "Years Coding" },
-  { value: "9",  label: "Projects Built" },
+  { value: "8",  label: "Projects Built" },
   { value: "2",  label: "Degrees Earned" },
 ];
 

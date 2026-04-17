@@ -53,6 +53,7 @@ export const projects: Project[] = [
     ],
     techDetails:
       "Spec work built to demonstrate what a high-quality web presence could look like for a local landscaping business. Designed a conversion-focused marketing site with service detail pages, a project gallery, and a contact form powered by Resend. Deployed on Vercel with a focus on performance and SEO.",
+    featured: true,
     category: "professional",
   },
   {
@@ -132,18 +133,6 @@ export const projects: Project[] = [
     techStack: ["Python"],
     techDetails:
       "Enigma Machine is a Python GUI application that simulates the historical cipher device used during World War II. Users can input messages, select rotor configurations, and see encrypted or decrypted output in real-time. Serves as both an educational tool and a tribute to early cryptographic ingenuity.",
-    category: "python",
-  },
-  {
-    name: "Snake Game",
-    status: "Live",
-    image: `${baseURL}Snake Game.jpg`,
-    description:
-      "Relive the classic Snake game with a Halloween-themed modern twist. Test your reflexes and strategy in this iconic arcade experience.",
-    link: "https://github.com/Stevensousa67/CSC105/blob/main/Moodle_Assignments/Snake_Game.py",
-    techStack: ["Python", "Pygame"],
-    techDetails:
-      "Snake Game is a classic arcade game implemented in Python using the Pygame library, featuring a Halloween theme with custom sound effects and animations. Players control a growing snake, avoiding collisions with walls and itself. Built to practice Python programming and game development fundamentals.",
     category: "python",
   },
 ];

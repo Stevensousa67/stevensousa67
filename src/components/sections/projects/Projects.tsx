@@ -5,7 +5,7 @@ import { motion, useInView, type Variants } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { featuredProjects } from "@/lib/featuredProjects";
+import { projects } from "@/lib/allProjects";
 import ProjectCard from "./ProjectCard";
 
 const container: Variants = {
@@ -66,7 +66,7 @@ export default function Projects() {
         initial="hidden"
         animate={gridInView ? "visible" : "hidden"}
       >
-        {featuredProjects.map((project) => (
+        {projects.slice(0, 3).map((project) => (
           <motion.div key={project.name} variants={item} className="h-full">
             <ProjectCard project={project} />
           </motion.div>

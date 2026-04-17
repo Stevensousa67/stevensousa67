@@ -36,15 +36,27 @@ export default function ProjectCard({ project }: { project: Project }) {
       {/* ── Image ──────────────────────────────────────────────── */}
       <div className="relative overflow-hidden">
         <AspectRatio ratio={16 / 9}>
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            className="object-cover transition-transform duration-500 group-hover/card:scale-105"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
-          />
+          {isLive ? (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+              <Image
+                src={project.image}
+                alt={project.name}
+                fill
+                className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
+              />
+            </a>
+          ) : (
+            <Image
+              src={project.image}
+              alt={project.name}
+              fill
+              className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
+            />
+          )}
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
         </AspectRatio>
 
         {/* Status badge */}
