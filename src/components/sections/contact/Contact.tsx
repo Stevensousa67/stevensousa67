@@ -2,11 +2,11 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import Image from "next/image";
 import { MapPin, Clock } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { ContactForm } from "./ContactForm";
-import { publicSocials } from "@/lib/socialMedia";
+import { SocialIconButton } from "@/components/SocialIconButton";
+import { contactSocials } from "@/lib/socialMedia";
 import { getCurrentUtcOffset } from "@/lib/getTimeZone";
 
 export default function Contact() {
@@ -67,23 +67,8 @@ export default function Contact() {
                 Find me on
               </p>
               <div className="flex flex-wrap gap-2">
-                {publicSocials.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={social.name}
-                    className="inline-flex size-10 items-center justify-center rounded-xl border border-border bg-card hover:bg-muted transition-colors shadow-sm"
-                  >
-                    <Image
-                      src={social.icon}
-                      alt={social.name}
-                      width={18}
-                      height={18}
-                      className={social.isBlack ? "dark:invert" : ""}
-                    />
-                  </a>
+                {contactSocials.map((social) => (
+                  <SocialIconButton key={social.name} social={social} />
                 ))}
               </div>
             </div>

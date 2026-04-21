@@ -7,6 +7,7 @@ import { ArrowRight, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { publicSocials } from "@/lib/socialMedia";
+import { SocialIconButton } from "@/components/SocialIconButton";
 import { getCurrentUtcOffset } from "@/lib/getTimeZone";
 import WordRotator from "./WordRotator";
 
@@ -103,22 +104,7 @@ export default function About() {
           {/* Social icons */}
           <motion.div variants={item} className="flex flex-wrap gap-2">
             {publicSocials.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={social.name}
-                className="inline-flex size-10 items-center justify-center rounded-xl border border-border bg-card hover:bg-muted transition-colors shadow-sm"
-              >
-                <Image
-                  src={social.icon}
-                  alt={social.name}
-                  width={18}
-                  height={18}
-                  className={social.isBlack ? "dark:invert" : ""}
-                />
-              </a>
+              <SocialIconButton key={social.name} social={social} />
             ))}
           </motion.div>
         </motion.div>

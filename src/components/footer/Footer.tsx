@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { publicSocials } from "@/lib/socialMedia";
+import { SocialIconButton } from "@/components/SocialIconButton";
 import { getCurrentUtcOffset } from "@/lib/getTimeZone";
 
 const navLinks = [
@@ -59,22 +59,7 @@ export default function Footer() {
           </p>
           <div className="flex flex-wrap gap-2">
             {publicSocials.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={social.name}
-                className="inline-flex size-9 items-center justify-center rounded-xl border border-border bg-card/50 hover:bg-muted transition-colors"
-              >
-                <Image
-                  src={social.icon}
-                  alt={social.name}
-                  width={16}
-                  height={16}
-                  className={social.isBlack ? "dark:invert" : ""}
-                />
-              </a>
+              <SocialIconButton key={social.name} social={social} size="sm" />
             ))}
           </div>
         </div>
