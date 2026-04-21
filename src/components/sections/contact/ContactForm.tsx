@@ -1,14 +1,15 @@
 "use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner"
-
+import { TurnstileWidget } from "./TurnstileWidget";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters long"),
@@ -18,50 +19,61 @@ const formSchema = z.object({
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const widgetIdRef = useRef<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
+    defaultValues: { name: "", email: "", message: "" },
   });
 
-  async function onSubmit(data: z.infer<typeof formSchema>) {
-    setIsSubmitting(true);
+  const resetTurnstile = useCallback(() => {
+    if (widgetIdRef.current && window.turnstile) {
+      window.turnstile.reset(widgetIdRef.current);
+      setTurnstileToken(null);
+    }
+  }, []);
 
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    if (!turnstileToken) {
+      toast("Please complete the security check before sending.", {
+        position: "bottom-right",
+        duration: 4000,
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
     try {
-      const response = await fetch('/api/email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+      const response = await fetch("/api/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, turnstileToken }),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        toast('Message sent successfully! I\'ll get back to you soon.', {
-          position: 'bottom-right',
+        toast("Message sent successfully! I'll get back to you soon.", {
+          position: "bottom-right",
           duration: 5000,
         });
         form.reset();
       } else {
-        toast(result.error || 'Failed to send message. Please try again.', {
-          position: 'bottom-right',
+        toast(result.error || "Failed to send message. Please try again.", {
+          position: "bottom-right",
           duration: 5000,
         });
       }
     } catch (error) {
-      console.error('Form submission error:', error);
-      toast('Network error. Please check your connection and try again.', {
-        position: 'bottom-right',
+      console.error("Form submission error:", error);
+      toast("Network error. Please check your connection and try again.", {
+        position: "bottom-right",
         duration: 5000,
       });
     } finally {
       setIsSubmitting(false);
+      resetTurnstile();
     }
   }
 
@@ -97,6 +109,7 @@ export function ContactForm() {
                   <FormControl>
                     <Input
                       placeholder="Your Email"
+                      type="email"
                       {...field}
                       className="w-full bg-input text-foreground border-border"
                       disabled={isSubmitting}
@@ -126,9 +139,21 @@ export function ContactForm() {
             />
           </div>
 
-          <Button type="submit" className="w-1/4 hover:underline" disabled={isSubmitting} >
-            {isSubmitting ? 'Sending...' : 'Send'}
-          </Button>
+          <div className="flex items-center justify-between gap-4">
+            <Button
+              type="submit"
+              disabled={isSubmitting || !turnstileToken}
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </Button>
+
+            <TurnstileWidget
+              onSuccess={setTurnstileToken}
+              onExpire={() => setTurnstileToken(null)}
+              onError={() => setTurnstileToken(null)}
+              widgetIdRef={widgetIdRef}
+            />
+          </div>
         </form>
       </Form>
     </div>
