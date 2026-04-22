@@ -139,7 +139,7 @@ export function ContactForm() {
             />
           </div>
 
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex flex-col-reverse items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
             <Button
               type="submit"
               disabled={isSubmitting || !turnstileToken}
