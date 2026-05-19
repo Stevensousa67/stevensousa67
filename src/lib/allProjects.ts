@@ -57,6 +57,25 @@ export const projects: Project[] = [
     category: "professional",
   },
   {
+    name: "Acme Cleaning",
+    status: "Live",
+    image: `${baseURL}Acme Cleaning.png`,
+    description: "Spec work — designed and built a modern marketing website for a residential cleaning company, featuring service pages, pricing, and a contact form for lead generation.",
+    link: "https://acmecleaning.stevensousa.com",
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn",
+      "Resend",
+      "Vercel",
+    ],
+    techDetails:
+      "Spec work built to demonstrate what a high-quality web presence could look like for a local cleaning business. Designed a conversion-focused marketing site with service detail pages, pricing information, and a contact form powered by Resend. Deployed on Vercel with a focus on performance and SEO.",
+    featured: true,
+    category: "professional",
+  },
+  {
     name: "Holy Bible",
     status: "Under Development",
     image: `${baseURL}Holy Bible.jpg`,
