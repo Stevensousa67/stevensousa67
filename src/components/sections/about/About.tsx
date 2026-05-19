@@ -10,11 +10,12 @@ import { publicSocials } from "@/lib/socialMedia";
 import { SocialIconButton } from "@/components/SocialIconButton";
 import { getCurrentUtcOffset } from "@/lib/getTimeZone";
 import WordRotator from "./WordRotator";
+import { projects } from "@/lib/allProjects";
 
 const stats = [
-  { value: "5+", label: "Years Coding" },
-  { value: "8",  label: "Projects Built" },
-  { value: "2",  label: "Degrees Earned" },
+  { value: (new Date()).getFullYear() - 2020, label: "Years Coding" },
+  { value: projects.length,  label: "Projects Built" },
+  { value: 2,  label: "Degrees Earned" },
 ];
 
 const container: Variants = {

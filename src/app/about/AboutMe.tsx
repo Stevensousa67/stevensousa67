@@ -19,9 +19,9 @@ import {
 } from "lucide-react";
 
 const stats = [
-  { label: "Years Coding", value: "5+", icon: Code2 },
+  { label: "Years Coding", value: (new Date()).getFullYear() - 2020, icon: Code2 },
   { label: "Roles Held", value: "3", icon: Briefcase },
-  { label: "Degrees Earned", value: "2", icon: GraduationCap },
+  { label: "Degrees Earned", value: 2, icon: GraduationCap },
 ];
 
 const interests = [
